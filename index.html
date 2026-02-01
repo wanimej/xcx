@@ -11,18 +11,20 @@
             box-sizing: border-box;
         }
 
+        /* Ensure the body takes full height */
         body {
             margin: 0;
             font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
             font-size: 13px;
             color: #333;
             background: linear-gradient(135deg, #1aa0cf, #177fb3);
-            height: 100vh;
+            height: 100vh;  /* Full viewport height */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        /* The container of the login form */
         .login-container {
             background: #fff;
             border: 1px solid #ddd;
@@ -31,6 +33,10 @@
             padding: 30px 40px;
             width: 380px;
             text-align: center;
+            /* Centering adjustments */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .logo {
