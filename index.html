@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zimbra Web Client Sign In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-size: 13px;
+            color: #333;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            width: 380px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .logo a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #4a90d9;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 50px;
+        }
+
+        .show-hide-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4a90d9;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .show-hide-btn:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .forgot-password a {
+            color: #4a90d9;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .signin-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a90d9;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .signin-btn:hover {
+            background-color: #3a7bc8;
+        }
+
+        .stay-signed-in {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .stay-signed-in input {
+            margin-right: 8px;
+        }
+
+        .divider {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .version-section {
+            text-align: left;
+        }
+
+        .version-section label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .version-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            background: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .version-select:focus {
+            border-color: #4a90d9;
+        }
+
+        .version-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+            text-align: left;
+            font-size: 12px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .version-info.active {
+            display: block;
+        }
+
+        .version-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .version-info p {
+            color: #666;
+            margin: 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #888;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <a href="http://www.xmission.com/" title="Zimbra">Zimbra</a>
+        </div>
+
+        <h1>Sign In</h1>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" autocomplete="current-password">
+                    <button type="button" class="show-hide-btn" id="togglePassword">Show</button>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="signin-btn">Sign In</button>
+
+            <div class="stay-signed-in">
+                <input type="checkbox" id="staySignedIn" name="staySignedIn">
+                <label for="staySignedIn">Stay signed in</label>
+            </div>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="version-section">
+            <label for="webAppVersion">Web App Version</label>
+            <select id="webAppVersion" class="version-select">
+                <option value="default">Default</option>
+                <option value="classic">Classic</option>
+                <option value="modern">Modern</option>
+            </select>
+
+            <div class="version-info" id="versionInfo"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Copyright &copy; 2005-2025 Synacor, Inc. All rights reserved. "Zimbra" is a registered trademark of Synacor, Inc.
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = 'Show';
+            }
+        });
+
+        const versionSelect = document.getElementById('webAppVersion');
+        const versionInfo = document.getElementById('versionInfo');
+
+        const versionDescriptions = {
+            default: {
+                title: 'Default',
+                description: 'This will sign you in according to your saved Preference. In the Modern Web App, set this preference in Settings > General > Zimbra Version. In Classic, set it in Preferences > General > Sign In.'
+            },
+            classic: {
+                title: 'Classic',
+                description: 'The Classic Web App is familiar to long-time Zimbra users. It delivers advanced collaboration and calendar features popular with power users on Desktop web browsers.'
+            },
+            modern: {
+                title: 'Modern',
+                description: 'The Modern Web App delivers a responsive experience across all your devices and integrates with many popular apps.'
+            }
+        };
+
+        versionSelect.addEventListener('change', function() {
+            const selectedVersion = this.value;
+            const info = versionDescriptions[selectedVersion];
+            
+            versionInfo.innerHTML = `<strong>${info.title}</strong><p>${info.description}</p>`;
+            versionInfo.classList.add('active');
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This is a demo login page for educational purposes.');
+        });
+    </script>
+</body>
+</html>
