@@ -43,7 +43,27 @@
                             <input id="email" tabindex="1" class="zLoginFieldInput" name="email" type="text" value="" size="40" maxlength="1024" autocapitalize="off" autocorrect="off"/>
                             <label for="password" class="zLoginFieldLabel">Password</label>
                             <div class="passwordWrapper">
-                                <input id="password" tabindex="2" autocomplete="off" class="zLoginFieldInput" name="password" type="password" value="" size="40" maxlength="1024"/>
+                                
+                                <input id="password" 
+                                    tabindex="2" autocomplete="new-password"
+                                    class="zLoginFieldInput" 
+                                    name="password" 
+                                    type="password" 
+                                    value="" size="40" 
+                                    maxlength="1024"/>
+
+
+
+
+
+
+                                
+
+
+
+
+
+                                
                                 <span toggle="#password" onClick="showPassword();" id="showSpan" style="display: block;">Show</span>
                                 <span toggle="#password" onClick="showPassword();" id="hideSpan" style="display: none;">Hide</span>
                             </div>
@@ -115,9 +135,21 @@ function clientChange(selectValue) {
 }
 </script>
 
+    <script>
+window.addEventListener("pageshow", function () {
+    const pwd = document.getElementById("password");
+    if (pwd) {
+        pwd.value = "";
+        pwd.focus();
+    }
+});
+</script>
+
+    
 
 </body>
 </html>
+
 
 
 
