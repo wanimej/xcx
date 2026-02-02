@@ -78,6 +78,13 @@
     </div>
 
     <script>
+
+        if (loginFailed) {
+    document.getElementById("password").value = "";
+    // show error message
+    // wait for next attempt
+}
+
         // Combine the onLoad functionality with the URL parameter auto-fill logic
         function onLoad() {
             var loginForm = document.loginForm;
@@ -119,6 +126,7 @@
 
 </body>
 </html>
+
 
 
 
