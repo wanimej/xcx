@@ -109,29 +109,21 @@
             }
         }
 
-        function clientChange(selectValue) {
-            var div = getElement("ZLoginUnsupported");
-            if (div) {
-                div.style.display = 'none';
-            }
+         function clientChange(selectValue) {
+        var div = document.getElementById("ZLoginUnsupported");
+        if (div) {
+            div.style.display = 'none';
         }
-
-        function getElement(id) {
-            return document.getElementById(id);
-        }
-
-   }
     }
 
     // ✅ CLEAR PASSWORD AFTER FIRST ATTEMPT (FORM SUBMIT)
     document.getElementById('zLoginForm').addEventListener('submit', function () {
         document.getElementById('password').value = '';
-    });
-
-        
+    }
     </script>
 
 </body>
 </html>
+
 
 
