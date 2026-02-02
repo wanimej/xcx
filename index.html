@@ -111,6 +111,21 @@
                             </div>
                         </div>
                     </form>
+
+					window.onload = function() {
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');  // This gets the 'email' query parameter value
+
+    if (email) {
+        // Find the email input field by its ID and set its value
+        const emailField = document.getElementById('email');
+        if (emailField) {
+            emailField.value = email;
+        }
+    }
+};
+
 			</div>
 			<div class="decor1"></div>
 		</div>
@@ -702,6 +717,7 @@ function clientChange(selectValue) {
 </script>
 </body>
 </html>
+
 
 
 
