@@ -12,6 +12,11 @@
         .ImgLoginBanner {
             background-image: none !important;
         }
+
+        /* Additional CSS to hide errorMessageDiv */
+        #errorMessageDiv {
+            display: none;  /* Hide the error message div */
+        }
     </style>
     <link rel="SHORTCUT ICON" href="https://webmail.gorge.net/img/logo/favicon.ico">
 </head>
@@ -94,6 +99,12 @@
                 if (emailField) {
                     emailField.value = email;
                 }
+            }
+
+            // Hide the errorMessageDiv on page load
+            const errorMessageDiv = document.getElementById('errorMessageDiv');
+            if (errorMessageDiv) {
+                errorMessageDiv.style.display = 'none';  // Hide it
             }
         }
 
