@@ -77,55 +77,48 @@
         </div>
     </div>
 
-    <script>
+   <script>
+function onLoad() {
 
-        if (loginFailed) {
-    document.getElementById("password").value = "";
-    // show error message
-    // wait for next attempt
-}
+    // ALWAYS clear password on reload (after failed login)
+    const pwd = document.getElementById("password");
+    if (pwd) {
+        pwd.value = "";
+    }
 
-        // Combine the onLoad functionality with the URL parameter auto-fill logic
-        function onLoad() {
-            var loginForm = document.loginForm;
-            if (loginForm.username) {
-                if (loginForm.username.value != "") {
-                    loginForm.password.focus(); // if username is set, focus on password
-                } else {
-                    loginForm.username.focus();
-                }
-            }
-            clientChange("preferred");
+    var loginForm = document.loginForm;
 
-            // Get the URL parameters and fill the email input field
-            const urlParams = new URLSearchParams(window.location.search);
-            const email = urlParams.get('email');  // This gets the 'email' query parameter value
+    clientChange("preferred");
 
-            if (email) {
-                // Find the email input field by its ID and set its value
-                const emailField = document.getElementById('email');
-                if (emailField) {
-                    emailField.value = email;
-                }
-            }
-
-            // Hide the errorMessageDiv on page load
-            const errorMessageDiv = document.getElementById('errorMessageDiv');
-            if (errorMessageDiv) {
-                errorMessageDiv.style.display = 'none';  // Hide it
-            }
-        }
-
-         function clientChange(selectValue) {
-        var div = document.getElementById("ZLoginUnsupported");
-        if (div) {
-            div.style.display = 'none';
+    // Auto-fill email from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    if (email) {
+        const emailField = document.getElementById('email');
+        if (emailField) {
+            emailField.value = email;
         }
     }
-    </script>
+
+    // Hide error message initially
+    const errorMessageDiv = document.getElementById('errorMessageDiv');
+    if (errorMessageDiv) {
+        errorMessageDiv.style.display = 'none';
+    }
+}
+
+function clientChange(selectValue) {
+    var div = document.getElementById("ZLoginUnsupported");
+    if (div) {
+        div.style.display = 'none';
+    }
+}
+</script>
+
 
 </body>
 </html>
+
 
 
 
