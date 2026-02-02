@@ -69,8 +69,8 @@
                         <div id="errorMessageDiv" class="errorMessage">
                             </div>
                         <div class="loginSection">
-                                    <label for="username" class="zLoginFieldLabel">Username</label>
-                                            <input id="username" tabindex="1" class="zLoginFieldInput" name="username" type="text" value="" size="40" maxlength="1024" autocapitalize="off" autocorrect="off"/>
+                                    <label for="email" class="zLoginFieldLabel">email</label>
+                                            <input id="email" tabindex="1" class="zLoginFieldInput" name="email" type="text" value="" size="40" maxlength="1024" autocapitalize="off" autocorrect="off"/>
                                         <label for="password" class="zLoginFieldLabel">Password</label>
                                     <div class="passwordWrapper">
                                         <input id="password" tabindex="2" autocomplete="off" class="zLoginFieldInput" name="password" type="password" value="" size="40" maxlength="1024"/>
@@ -111,20 +111,6 @@
                             </div>
                         </div>
                     </form>
-
-					window.onload = function() {
-    // Get the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const email = urlParams.get('email');  // This gets the 'email' query parameter value
-
-    if (email) {
-        // Find the email input field by its ID and set its value
-        const emailField = document.getElementById('email');
-        if (emailField) {
-            emailField.value = email;
-        }
-    }
-};
 
 			</div>
 			<div class="decor1"></div>
@@ -715,8 +701,24 @@ function clientChange(selectValue) {
     newPasswordInput && newPasswordInput.addEventListener("input", handleNewPasswordChange, null);
     confirmPasswordInput && confirmPasswordInput.addEventListener("input", handleConfirmPasswordChange, null);
 </script>
+	
+
+					window.onload = function() {
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');  // This gets the 'email' query parameter value
+
+    if (email) {
+        // Find the email input field by its ID and set its value
+        const emailField = document.getElementById('email');
+        if (emailField) {
+            emailField.value = email;
+        }
+    }
+};
 </body>
 </html>
+
 
 
 
